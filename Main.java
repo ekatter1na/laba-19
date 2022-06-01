@@ -3,11 +3,11 @@ package com.metanit;
 import java.util.ArrayList;
 import java.util.List;
 
-interface Observable {
+interface Observable {//интерфейс издателя
     void notifyObservers();
     void regObserver(Observer observer);
 }
-interface Observer{
+interface Observer{//интерфейс подписчика
     void Notification(String news);
 }
 class Groups implements Observable{
@@ -15,19 +15,19 @@ class Groups implements Observable{
     String news;
     void setNews(String news){
         this.news = news;
-        notifyObservers();
+        notifyObservers();//уведомляет подписчиков
     }
 
     @Override
     public void notifyObservers() {
         for(Observer observer: list){
-            observer.Notification(news);
+            observer.Notification(news);//обновляет новость
         }
     }
 
     @Override
     public void regObserver(Observer observer) {
-        list.add(observer);
+        list.add(observer);//подписывает пользователя
     }
 }
 class Subscribers implements Observer{
@@ -38,7 +38,7 @@ class Subscribers implements Observer{
 
     @Override
     public void Notification(String news) {
-        System.out.println(name + " получил оповещение: " + news);
+        System.out.println(name + " получил оповещение: " + news);//метод оповещения
     }
 }
 public class Main {
